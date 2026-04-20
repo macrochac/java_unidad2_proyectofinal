@@ -26,14 +26,19 @@ class Cliente(Persona):
     
     def agregar_mascota(self, mascota):
         self.mascota.append(mascota)
+    
+    def mostrar_mascotas(self):
+        for mascota in self.mascota :
+            return mascota
 
 class Recepcionista(Persona):
     def __init__(self, nombre, documento):
         super().__init__(nombre, documento)
         self.cliente = []
+        self.rol="Recepcionista"
 
-    def mostrar_rol(self, rol):
-        return f"El rol de este usuario es: {rol}"
+    def mostrar_rol(self):
+        return f"El rol de este usuario es: {self.rol}"
     
     def agregar_cliente(self, cliente):
         self.cliente.append(cliente)
@@ -42,9 +47,9 @@ class Veterinario(Persona):
     def __init__(self, nombre, documento, especialidad):
         super().__init__(nombre, documento)
         self.especialidad = especialidad
-
-    def mostrar_rol(self, rol):
-        return f"El rol de este usuario es: {rol}"
+        self.rol="Veterinario"
+    def mostrar_rol(self):
+        return f"El rol de este usuario es: {self.rol}"
     
     def atender_mascota(self, mascota):
         return f"El veterinario {self.nombre} está atendiendo a la mascota {mascota}"
@@ -183,7 +188,8 @@ class Factura:
         self.consulta = consulta
         self.subtotal = consulta.calcular_costo_consulta()
         self.impuesto = self.subtotal * 0.19
-        self.total = self.subtotal + self.impuesto
+        self.total = self.subtotal + self.impuesto 
+
     
     def calcular_total(self):
         return f"El total de su Factura es de: ${self.total}"
@@ -236,7 +242,7 @@ print("\n================ HOSPITALIZACION ================\n")
 
 # Crear hospitalizacion
 hospitalizacion1 = Hospitalizacion(
-    mascota1,
+    mascota2,
     veterinario1,
     3,
     "Observacion por infeccion y deshidratacion"
